@@ -10,26 +10,26 @@ from app.models.user import User
 
 def solicitar_datos() -> dict:
 
-    print("\n=== CREACION DEL SUPER_ADMIN ===\n")
+    print("\n=== Creacion del SUPER_ADMIN===\n")
 
     first_name = input("Nombres: ").strip()
     last_name = input("Apellidos: ").strip()
-    email = input("Correo electronico: ").strip()
+    email = input("Correo electronico: ").strip().lower()
 
     if not first_name or not last_name:
-        raise ValueError("Los nombres y apellidos son obligatorios")
-    
-    if "@" not in email or "." not in email.split("@")[-1]:
-        raise ValueError("Debes ingresar un correo electronico valido")
+        raise ValueError("Los nombres y apellidos son obligatorios.")
 
-    password = getpass("Crea una contraseña(minimo 12 caracteres):")
-    confirmation = getpass("Confirma la contraseña")
+    if "@" not in email or "." not in email.split("@")[-1]:
+        raise ValueError("Debes ingresar un correo electronico valido.")
+
+    password = getpass("Crea una contraseña(minimo 12 caracteres): ")
+    confirmation = getpass("Confirma la contraseña: ")
 
     if len(password) < 12:
-        raise ValueError("La contraseña debe tener al menos 12 caracteres")
+        raise ValueError("La contraseña debe tener al menos 12 caracteres.")
 
     if password != confirmation:
-        raise ValueError("Las contraseñas no coinciden")
+        raise ValueError("Las contraseñas no coinciden.")
 
     return{
         "first_name": first_name,
